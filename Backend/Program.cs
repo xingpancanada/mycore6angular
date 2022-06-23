@@ -1,10 +1,13 @@
 using Backend.Data;
+using Backend.Errors;
+using Backend.Extensions;
 using Backend.Helpers;
 using Backend.Interfaces;
+using Backend.Middleware;
 using Backend.Repositories;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using Microsoft.Extensions.FileProviders;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,15 +19,44 @@ builder.Services.AddAutoMapper(typeof(MappingProfiles));
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+//builder.Services.AddSwaggerGen();
 
 ////13.add db context for myStore.db
 builder.Services.AddDbContext<StoreDBContext>(options => options.UseSqlite($"Data Source=myStore.db"));
 
-////23.adding a repository and interface
-builder.Services.AddScoped<IProductRepository, ProductRepository>();
+
+////57
+builder.Services.AddSwaggerServicesFromExtension();
+builder.Services.AddApplicationServicesFromExtension();
+
+//////68. Adding CORS Support to the API
+builder.Services.AddCors(opt => {
+    opt.AddPolicy("CorsPolicy", policy => {
+        policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200");
+    });
+});
 
 var app = builder.Build();
+
+
+////53. use ExceptionMiddleware to replace app.UseDeveloperExceptionPage();  
+////must be at the top of app.
+app.UseMiddleware<ExceptionMiddleware>(); 
+
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    ////57
+    app.UseSwaggerDocumentation();
+}
+
+////52. Adding a not found endpoint error handler
+//app.UseStatusCodePagesWithReExecute("errors/{0}");  //do we need this???
+
+
+
+app.UseHttpsRedirection();
 
 ////28. Applying the migrations and creating the Database at app startup
 using var scope = app.Services.CreateAsyncScope();
@@ -51,16 +83,6 @@ catch (Exception ex)
     logger.LogError(ex, "An error occurred during migration");
     //throw(ex);
 }
-
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
-app.UseHttpsRedirection();
 
 ////68. Adding CORS Support to the API
 app.UseCors("CorsPolicy");

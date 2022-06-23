@@ -8,7 +8,7 @@ namespace Backend.Interfaces
         //23.
         Task<Product> GetProductByIdAsync(int id);
 
-        Task<IReadOnlyList<Product>> GetProductsAsync();
+        Task<List<Product>> GetProductsAsync();
 
          ////30. Adding the code to get the product brands and types
         Task<IReadOnlyList<ProductBrand>> GetProductBrandsAsync();

@@ -23,7 +23,7 @@ namespace Backend.Repositories
                 .FirstOrDefaultAsync(p=>p.Id == id);
         }
 
-        public async Task<IReadOnlyList<Product>> GetProductsAsync()
+        public async Task<List<Product>> GetProductsAsync()
         {
             /////31. Eager loading of navigation properties
             return await _storeDBContext.Products

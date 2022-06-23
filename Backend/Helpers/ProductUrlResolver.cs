@@ -16,7 +16,7 @@ namespace Backend.Helpers
         public string Resolve(Product source, ProductToReturnDto destination, string destMember, ResolutionContext context)
         {
             if(!string.IsNullOrEmpty(source.PictureUrl)){
-                //set in appsetting.Development.json
+                //set in appsetting.Development.json:  "ApiUrl": "https://localhost:7262/"
                 return _config["ApiUrl"] + source.PictureUrl;
             }
 
