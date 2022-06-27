@@ -17,6 +17,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
     PaginationModule.forRoot(),
     CarouselModule.forRoot(),
     NgxSpinnerModule,
+    ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS,useClass: ErrorInterceptor,multi: true,},
