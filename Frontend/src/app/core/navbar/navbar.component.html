@@ -1,0 +1,27 @@
+<nav class="navbar navbar-light bg-light border-bottom shadow-sm">
+  <div class="container-fluid justify-content-between">
+    <div>
+      <a class="navbar-brand px-3 text-uppercase" href="/">
+        <img src="/assets/images/BigAlsCanada.png" width="35" height="35">
+        <span style="margin-left: 1rem; font-size: medium; font-weight: bold;">BigAl's</span>
+      </a>
+      <a class="px-4" style="font-size: medium;" [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" >Home</a>
+      <a class="px-4" style="font-size: medium;" routerLink="/shop" routerLinkActive="active">Shop</a>
+      <a class="px-4" style="font-size: medium;" routerLink="/test-error" routerLinkActive="active">Error</a>
+    </div>
+    <div class="d-flex align-items-center text-uppercase">
+      <div class="px-5">
+        <a class="position-relative">
+          <i class="fa fa-shopping-cart fa-2x mr-5 text-dark"></i>
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.5rem;">
+            18
+            <span class="visually-hidden">unread messages</span>
+          </span>
+        </a>
+      </div>
+      <a  style="font-size: small;" class="btn btn-primary mx-3 text-white box-shadow-3dp" routerLink="/account/login">Login</a>
+      <a  style="font-size: small;" class="btn btn-warning mx-3 text-white box-shadow-3dp" routerLink="/account/register">Sign up</a>
+    </div>
+  </div>
+</nav>
+
