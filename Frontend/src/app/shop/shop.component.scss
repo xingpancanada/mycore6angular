@@ -11,6 +11,7 @@
   &.active {
       border-radius: 10px;
       background-color: blue;
+      box-shadow: 1px 1px 10px rgb(220, 225, 226);
   }
 
   &:not(.active):hover {

@@ -1,5 +1,6 @@
 using Backend.Data;
 using Backend.Errors;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 ////50. this controller is for testing error api
@@ -14,6 +15,14 @@ namespace Backend.Controllers
         public BuggyController(StoreDBContext storeDBContext)
         {
             _storeDBContext = storeDBContext;
+        }
+
+        //////174. Testing the token  
+        ///////175. Troubleshooting auth issues
+        [HttpGet("testauth")]
+        //[Authorize]
+        public ActionResult<string> GetSerectText(){
+            return "secret text";
         }
 
         [HttpGet("notfound")]

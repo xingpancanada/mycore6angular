@@ -115,13 +115,13 @@ export class ShopComponent implements OnInit {
         this.pageSize = resp.pageSize;
         this.count = resp.count;
       }
-      console.log(this.products);
-      console.log(this.page);
-      console.log(this.pageSize);
-      console.log(this.count);
-      console.log(this.brandId);
-      console.log(this.typeId);
-      console.log(this.search);
+      // console.log(this.products);
+      // console.log(this.page);
+      // console.log(this.pageSize);
+      // console.log(this.count);
+      // console.log(this.brandId);
+      // console.log(this.typeId);
+      // console.log(this.search);
     });
   }
 

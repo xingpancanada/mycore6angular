@@ -5,6 +5,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { TestErrorComponent } from './test-error/test-error.component';
 import { ServerErrorComponent } from './server-error/server-error.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 @NgModule({
   declarations: [
@@ -16,9 +17,13 @@ import { NotFoundComponent } from './not-found/not-found.component';
   imports: [
     CommonModule,
     RouterModule,   ///////110. Setting up the nav links
+    BsDropdownModule.forRoot()
   ],
   exports: [
-    NavbarComponent
+    NavbarComponent,
+    TestErrorComponent,
+    ServerErrorComponent,
+    NotFoundComponent
   ],
 })
 export class CoreModule { }

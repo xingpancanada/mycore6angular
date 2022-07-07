@@ -42,8 +42,8 @@ export class ErrorInterceptor implements HttpInterceptor {
                     this.toastr.error(error.error.message, error.error.statusCode);
                 }
             }
-            return throwError(()=> new Error(error));
+            return throwError(()=> new Error(error.error.message));
         })
     )
-}
+  }
 }

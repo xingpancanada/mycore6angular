@@ -8,7 +8,8 @@ namespace Backend.Data
     public class StoreDBContext : DbContext
     {
         ////add default constructor with options for add default connection strings
-        public StoreDBContext(DbContextOptions options) : base(options)
+        ////need <StoreDBContext> before options because we create 2 DB
+        public StoreDBContext(DbContextOptions<StoreDBContext> options) : base(options)
         {
         }
 
@@ -18,6 +19,13 @@ namespace Backend.Data
         ////25. Extending the products entity and creating related entities
         public DbSet<ProductBrand> ProductBrands { get; set; }
         public DbSet<ProductType> ProductTypes { get; set; }
+
+
+        public DbSet<CustomerBasket> CustomerBasket { get; set; }
+        public DbSet<BasketItem> BasketItem { get; set; }
+        
+        
+        
 
         
 

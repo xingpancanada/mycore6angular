@@ -3,12 +3,13 @@ import { IPagination } from './../shared/models/pagination';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, of } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShopService {
-  baseUrl = 'https://localhost:7262/api/';
+  baseUrl = environment.apiUrl;
 
   products: IProduct[] = [];
   brands: any[]= [];
@@ -63,8 +64,7 @@ export class ShopService {
       map(response => {
         this.brands = response;
         console.log('brand response:', response);
-        //console.log('brand response data:', response);  //wrong!!! response is already the data!!!!!!
-        return response;
+        return this.brands;
       })
     )
   }
@@ -77,7 +77,7 @@ export class ShopService {
     return this.http.get<any[]>(this.baseUrl + 'products/types').pipe(
       map(response => {
         this.types = response;
-        return response;
+        return this.types;
       })
     )
   }

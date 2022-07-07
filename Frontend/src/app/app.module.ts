@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { ShopComponent } from './shop/shop.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
@@ -32,11 +33,12 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     CoreModule,
     SharedModule,
-    ShopModule,
+    //ShopModule,   //////114. Lazy loading angular modules
     PaginationModule.forRoot(),
     CarouselModule.forRoot(),
     NgxSpinnerModule,
     ToastrModule.forRoot(), // ToastrModule added
+    BsDropdownModule.forRoot()
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS,useClass: ErrorInterceptor,multi: true,},

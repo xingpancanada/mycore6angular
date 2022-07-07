@@ -36,6 +36,16 @@ public class  ProductsController : BaseApiController
         _config = config;   ////return _config["ApiUrl"] + source.PictureUrl;
     }
 
+    [HttpDelete]
+    public async Task DeleteProduct(int id){
+        await _productRepo.DeleteProductAsync(id);
+    }
+
+    [HttpPut]
+    public async Task UpdateProduct(Product p){
+        await _productRepo.UpdateProductAsync(p);
+    }
+
     [HttpGet]
     public async Task<ActionResult<List<Product>>> GetProducts(int brandId = 0, int typeId = 0, string sort = "name", int pageSize = 100, int page = 1, string search = "all")
     {

@@ -7,7 +7,7 @@
 
 <br>
 <div class="container">
-  <div class="row">
+  <div class="row mt-1">
     <section class="col-3">
 
       <ng-container *ngIf="types && brands">
@@ -51,22 +51,22 @@
           [page]="page">
         </app-page-header>
 
-        <input
-        type="text"
-        #search
-        (keyup.enter)="onSearch()"
-        class="form-control inline-form m-3"
-        style="width: 300px"
-        placeholder="Search"
-        />
 
-        <div>
-          <button class="btn btn-outline-primary mx-3" (click)="onSearch()">Search</button>
-          <button class="btn btn-outline-success" (click)="onReset()">Reset</button>
+        <div class="d-flex justify-content-between align-items-center">
+          <input
+          type="text"
+          #search
+          (keyup.enter)="onSearch()"
+          class="form-control inline-form mx-2 shadow-sm"
+          style="width: 300px"
+          placeholder="Search"
+          />
+          <button class="btn btn-sm btn-outline-primary mx-2 shadow-sm" (click)="onSearch()">Search</button>
+          <button class="btn btn-sm btn-outline-success shadow-sm" (click)="onReset()">Reset</button>
         </div>
       </div>
 
-      
+
       <div class="row">
         <div class="col-4 mb-3" *ngFor="let p of products">
           <app-product-item [product]="p"></app-product-item>

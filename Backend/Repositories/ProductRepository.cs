@@ -43,5 +43,22 @@ namespace Backend.Repositories
             ////30. Adding the code to get the product brands and types
             return await _storeDBContext.ProductBrands.ToListAsync();
         }
+
+        public async Task<int> UpdateProductAsync(Product product)
+        {
+            _storeDBContext.Products.Attach(product);
+            _storeDBContext.Entry(product).State = EntityState.Modified;
+
+            var result = await _storeDBContext.SaveChangesAsync();
+            return result;
+        }
+
+        public async Task<int> DeleteProductAsync(int id)
+        {
+            var p = await this.GetProductByIdAsync(id);
+            _storeDBContext.Products.Remove(p);
+            var result = await _storeDBContext.SaveChangesAsync();
+            return result;
+        }
     }
 }

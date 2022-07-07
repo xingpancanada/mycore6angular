@@ -1,3 +1,5 @@
+using Backend.Entities;
+
 namespace Backend.Dtos
 {
     public class ProductToReturnDto
@@ -12,8 +14,13 @@ namespace Backend.Dtos
         
         public decimal Price { get; set; }
         
-        public string ProductType { get; set; }
+        public int ProductTypeId { get; set; }
         
-        public string ProductBrand { get; set; }
+        public int ProductBrandId { get; set; }
+
+        public ProductType ProductType { get; set; }
+        public ProductBrand ProductBrand { get; set; }
+        
+        
     }
 }
